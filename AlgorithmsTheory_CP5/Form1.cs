@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
@@ -41,9 +42,9 @@ namespace AlgorithmsTheory_CP5
         private void ActivateTabs()
         {
             if (radioButton1.Checked)
-                hashTable = new HashTable(10, 1);
+                hashTable = new HashTable(1);
             else if (radioButton2.Checked)
-                hashTable = new HashTable(10, 2);
+                hashTable = new HashTable(2);
 
             tabPage2.Enabled = true;
             AddTab.Enabled = true;
@@ -53,46 +54,81 @@ namespace AlgorithmsTheory_CP5
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            // 1. Отримуємо назву та перевіряємо, чи вона не порожня
             string name = txtName.Text.Trim();
-            string date = txtDate.Text.Trim();
-
-            if (name == "" || date == "")
+            if (string.IsNullOrEmpty(name))
             {
-                MessageBox.Show("Заповніть всі поля!");
-                return;
-            }
-            string result = hashTable.Add(name, date);
-            MessageBox.Show(result);
-
-            txtName.Clear();
-            txtDate.Clear();
-        }
-
-        private void btnRemove_Click(object sender, EventArgs e)
-        {
-            string name = txtRemoveName.Text.Trim();
-            string date = txtRemoveDate.Text.Trim();
-
-            if (name == "" || date == "")
-            {
-                MessageBox.Show("Заповніть всі поля!");
+                MessageBox.Show("Будь ласка, введіть ім'я студента.");
                 return;
             }
 
-            string result = hashTable.Remove(name, date);
-            MessageBox.Show(result);
+            // 2. Спробуємо зчитати день та місяць
+            bool isDayOk = int.TryParse(txtDate.Text, out int day);
+            bool isMonthOk = int.TryParse(txtMonth.Text, out int month);
 
-            txtRemoveName.Clear();
-            txtRemoveDate.Clear();
+            // 3. Валідація значень
+            if (!isDayOk || day < 1 || day > 31)
+            {
+                MessageBox.Show("Введіть коректне число дня (1-31).");
+                return;
+            }
+
+            if (!isMonthOk || month < 1 || month > 12)
+            {
+                MessageBox.Show("Введіть коректне число місяця (1-12).");
+                return;
+            }
+
+            // 4. Якщо все пройшло успішно — додаємо в таблицю
+            try
+            {
+                string msg = hashTable.Add(name, day, month);
+                MessageBox.Show(msg);
+
+                // Очищуємо поля для нового вводу
+                txtName.Clear();
+                txtDate.Clear();
+                txtMonth.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Виникла системна помилка: {ex.Message}");
+            }
         }
 
         private void btnShow_Click(object sender, EventArgs e)
         {
             listBoxTable.Items.Clear();
-
-            var table = hashTable.GetTable();
-            foreach (string row in table)
-                listBoxTable.Items.Add(row);
+            var data = hashTable.GetTable();
+            foreach (var line in data)
+            {
+                listBoxTable.Items.Add(line);
+            }
+            if (listBoxTable.Items.Count == 0) MessageBox.Show("Таблиця порожня");
         }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string name = txtRemoveName.Text.Trim();
+                int day = int.Parse(txtRemoveDate.Text.Trim());   // Ваше нове поле дня
+                int month = int.Parse(txtRemoveMonth.Text.Trim()); // Ваше нове поле місяця
+
+                string result = hashTable.Remove(name, day, month);
+                MessageBox.Show(result);
+
+                // Очищення полів після видалення
+                txtRemoveName.Clear();
+                txtRemoveDate.Clear();
+                txtRemoveMonth.Clear();
+            }
+            catch
+            {
+                MessageBox.Show("Будь ласка, введіть коректні дані для видалення (числа в полях дати)!");
+            }
+        }
+
+        
     }
 }

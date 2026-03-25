@@ -34,20 +34,26 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.AddTab = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtMonth = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtDate = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtRemoveMonth = new System.Windows.Forms.TextBox();
             this.btnRemove = new System.Windows.Forms.Button();
             this.txtRemoveDate = new System.Windows.Forms.TextBox();
             this.txtRemoveName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.listBoxTable = new System.Windows.Forms.ListBox();
             this.btnShow = new System.Windows.Forms.Button();
+            this.listBoxTable = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.SelectHash.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -86,9 +92,9 @@
             // 
             this.panel1.Controls.Add(this.radioButton2);
             this.panel1.Controls.Add(this.radioButton1);
-            this.panel1.Location = new System.Drawing.Point(214, 141);
+            this.panel1.Location = new System.Drawing.Point(151, 144);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(219, 83);
+            this.panel1.Size = new System.Drawing.Size(363, 83);
             this.panel1.TabIndex = 1;
             // 
             // radioButton2
@@ -96,10 +102,9 @@
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(16, 42);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(121, 20);
+            this.radioButton2.Size = new System.Drawing.Size(316, 20);
             this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Поліноміальна";
+            this.radioButton2.Text = "Поліноміальна комбінація (Polynomial Rolling)";
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
@@ -108,15 +113,17 @@
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(16, 16);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(193, 20);
+            this.radioButton1.Size = new System.Drawing.Size(338, 20);
             this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "За сумою символів (ASCII)";
+            this.radioButton1.Text = "Метод календарного згортання (Linear Mapping)";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // AddTab
             // 
+            this.AddTab.Controls.Add(this.label6);
+            this.AddTab.Controls.Add(this.txtMonth);
+            this.AddTab.Controls.Add(this.label5);
             this.AddTab.Controls.Add(this.btnAdd);
             this.AddTab.Controls.Add(this.txtDate);
             this.AddTab.Controls.Add(this.txtName);
@@ -129,6 +136,31 @@
             this.AddTab.TabIndex = 1;
             this.AddTab.Text = "Додати студента ";
             this.AddTab.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(453, 131);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(50, 16);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Місяць";
+            // 
+            // txtMonth
+            // 
+            this.txtMonth.Location = new System.Drawing.Point(420, 128);
+            this.txtMonth.Name = "txtMonth";
+            this.txtMonth.Size = new System.Drawing.Size(34, 22);
+            this.txtMonth.TabIndex = 6;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(380, 131);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(39, 16);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "День";
             // 
             // btnAdd
             // 
@@ -143,22 +175,22 @@
             // 
             // txtDate
             // 
-            this.txtDate.Location = new System.Drawing.Point(344, 167);
+            this.txtDate.Location = new System.Drawing.Point(347, 128);
             this.txtDate.Name = "txtDate";
-            this.txtDate.Size = new System.Drawing.Size(100, 22);
+            this.txtDate.Size = new System.Drawing.Size(34, 22);
             this.txtDate.TabIndex = 3;
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(344, 145);
+            this.txtName.Location = new System.Drawing.Point(347, 158);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(100, 22);
+            this.txtName.Size = new System.Drawing.Size(156, 22);
             this.txtName.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(215, 172);
+            this.label2.Location = new System.Drawing.Point(218, 133);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(122, 16);
             this.label2.TabIndex = 1;
@@ -167,7 +199,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(215, 145);
+            this.label1.Location = new System.Drawing.Point(218, 158);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 16);
             this.label1.TabIndex = 0;
@@ -175,6 +207,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label8);
+            this.tabPage1.Controls.Add(this.label7);
+            this.tabPage1.Controls.Add(this.txtRemoveMonth);
             this.tabPage1.Controls.Add(this.btnRemove);
             this.tabPage1.Controls.Add(this.txtRemoveDate);
             this.tabPage1.Controls.Add(this.txtRemoveName);
@@ -188,6 +223,31 @@
             this.tabPage1.Text = "Видалити студента";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(385, 134);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(39, 16);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "День";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(459, 135);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(50, 16);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "Місяць";
+            // 
+            // txtRemoveMonth
+            // 
+            this.txtRemoveMonth.Location = new System.Drawing.Point(426, 132);
+            this.txtRemoveMonth.Name = "txtRemoveMonth";
+            this.txtRemoveMonth.Size = new System.Drawing.Size(34, 22);
+            this.txtRemoveMonth.TabIndex = 10;
+            // 
             // btnRemove
             // 
             this.btnRemove.Location = new System.Drawing.Point(290, 220);
@@ -200,22 +260,22 @@
             // 
             // txtRemoveDate
             // 
-            this.txtRemoveDate.Location = new System.Drawing.Point(348, 170);
+            this.txtRemoveDate.Location = new System.Drawing.Point(346, 131);
             this.txtRemoveDate.Name = "txtRemoveDate";
-            this.txtRemoveDate.Size = new System.Drawing.Size(100, 22);
+            this.txtRemoveDate.Size = new System.Drawing.Size(36, 22);
             this.txtRemoveDate.TabIndex = 8;
             // 
             // txtRemoveName
             // 
-            this.txtRemoveName.Location = new System.Drawing.Point(348, 148);
+            this.txtRemoveName.Location = new System.Drawing.Point(346, 160);
             this.txtRemoveName.Name = "txtRemoveName";
-            this.txtRemoveName.Size = new System.Drawing.Size(100, 22);
+            this.txtRemoveName.Size = new System.Drawing.Size(163, 22);
             this.txtRemoveName.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(219, 175);
+            this.label3.Location = new System.Drawing.Point(217, 136);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(122, 16);
             this.label3.TabIndex = 6;
@@ -224,7 +284,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(219, 148);
+            this.label4.Location = new System.Drawing.Point(217, 160);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(29, 16);
             this.label4.TabIndex = 5;
@@ -242,15 +302,6 @@
             this.tabPage2.Text = "Таблиця студентів";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // listBoxTable
-            // 
-            this.listBoxTable.FormattingEnabled = true;
-            this.listBoxTable.ItemHeight = 16;
-            this.listBoxTable.Location = new System.Drawing.Point(132, 73);
-            this.listBoxTable.Name = "listBoxTable";
-            this.listBoxTable.Size = new System.Drawing.Size(407, 228);
-            this.listBoxTable.TabIndex = 0;
-            // 
             // btnShow
             // 
             this.btnShow.Location = new System.Drawing.Point(281, 308);
@@ -260,6 +311,15 @@
             this.btnShow.Text = "Показати";
             this.btnShow.UseVisualStyleBackColor = true;
             this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
+            // 
+            // listBoxTable
+            // 
+            this.listBoxTable.FormattingEnabled = true;
+            this.listBoxTable.ItemHeight = 16;
+            this.listBoxTable.Location = new System.Drawing.Point(132, 73);
+            this.listBoxTable.Name = "listBoxTable";
+            this.listBoxTable.Size = new System.Drawing.Size(407, 228);
+            this.listBoxTable.TabIndex = 0;
             // 
             // Form1
             // 
@@ -306,6 +366,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListBox listBoxTable;
         private System.Windows.Forms.Button btnShow;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtMonth;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtRemoveMonth;
     }
 }
 

@@ -11,132 +11,108 @@ namespace AlgorithmsTheory_CP5
     class Node
     {
         public string Name;
-        public string BirthDate;
+        public int Day;
+        public int Month;
         public Node Next;
 
-        public Node(string name, string birthDate)
+        public Node(string name, int day, int month)
         {
-            Name = name;
-            BirthDate = birthDate;
-            Next = null;
+            this.Name = name;
+            this.Day = day;
+            this.Month = month;
+            this.Next = null;
         }
     }
 
     class HashTable
     {
         private Node[] buckets;
-        private int size;
+        private int size = 366;
         private int hashType;
 
-        public HashTable(int size, int hashType)
+        public HashTable(int hashType)
         {
-            this.size = size;
             this.hashType = hashType;
-            buckets = new Node[size];
+            this.buckets = new Node[size];
         }
 
-        private int Hash1(string key)
+        // Хеш-функція 1: Метод календарного згортання
+        private int Hash1(int day, int month)
         {
-            int sum = 0;
-            foreach (char c in key)
-                sum += (int)c;
-            return sum % size;
+            return ((month - 1) * 31 + (day - 1)) % size;
         }
 
-        private int Hash2(string key)
+        // Хеш-функція 2: Метод множення на просте число (Поліноміальна)
+        private int Hash2(int day, int month)
         {
-            int hash = 0;
-            int p = 31;
-            int power = 1;
-            foreach (char c in key)
-            {
-                hash = (hash + (int)c * power) % size;
-                power = (power * p) % size;
-            }
-            return hash;
+            return (day * 37 + month) % size;
         }
 
-        private int GetHash(string key)
+        private int GetIndex(int day, int month)
         {
-            return (hashType == 1) ? Hash1(key) : Hash2(key);
+            return (hashType == 1) ? Hash1(day, month) : Hash2(day, month);
         }
 
-        public string Add(string name, string birthDate)
+        public string Add(string name, int day, int month)
         {
-            int index = GetHash(name);
-            Node newNode = new Node(name, birthDate);
+            int index = GetIndex(day, month);
+            Node newNode = new Node(name, day, month);
 
             if (buckets[index] == null)
             {
                 buckets[index] = newNode;
             }
-            else
+            else // Вирішення колізій методом ланцюжків
             {
                 Node current = buckets[index];
                 while (current.Next != null)
                 {
-                    if (current.Name == name && current.BirthDate == birthDate)
-                        return "Такий запис вже існує!";
+                    if (current.Name == name && current.Day == day) return "Вже є!";
                     current = current.Next;
                 }
-                if (current.Name == name && current.BirthDate == birthDate)
-                    return "Такий запис вже існує!";
                 current.Next = newNode;
             }
-
-            return $"Додано в бакет [{index}]";
+            return $"Успішно! Потрапило в розділ №{index}";
         }
 
-        public string Remove(string name, string birthDate)
+        public string Remove(string name, int day, int month)
         {
-            int index = GetHash(name);
+            int index = GetIndex(day, month);
             Node current = buckets[index];
-            Node previous = null;
+            Node prev = null;
 
             while (current != null)
             {
-                if (current.Name == name && current.BirthDate == birthDate)
+                if (current.Name == name && current.Day == day && current.Month == month)
                 {
-                    if (previous == null)
-                        buckets[index] = current.Next;
-                    else
-                        previous.Next = current.Next;
-
-                    return $"Видалено з бакету [{index}]";
+                    if (prev == null) buckets[index] = current.Next;
+                    else prev.Next = current.Next;
+                    return $"Видалено з бакета {index}";
                 }
-                previous = current;
+                prev = current;
                 current = current.Next;
             }
-
-            return "Запис не знайдено!";
+            return "Не знайдено!";
         }
 
         public List<string> GetTable()
         {
-            List<string> result = new List<string>();
-
+            List<string> rows = new List<string>();
             for (int i = 0; i < size; i++)
             {
-                if (buckets[i] == null)
+                if (buckets[i] != null)
                 {
-                    result.Add($"Бакет [{i}]: порожньо");
-                }
-                else
-                {
-                    string row = $"Бакет [{i}]: ";
-                    Node current = buckets[i];
-                    while (current != null)
+                    string info = $"Бакет {i}: ";
+                    Node curr = buckets[i];
+                    while (curr != null)
                     {
-                        row += $"{current.Name} ({current.BirthDate})";
-                        if (current.Next != null)
-                            row += " → ";
-                        current = current.Next;
+                        info += $"[{curr.Name} | {curr.Day}.{curr.Month}] -> ";
+                        curr = curr.Next;
                     }
-                    result.Add(row);
+                    rows.Add(info + "null");
                 }
             }
-
-            return result;
+            return rows;
         }
     }
 }
