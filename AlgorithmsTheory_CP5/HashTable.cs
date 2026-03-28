@@ -36,13 +36,11 @@ namespace AlgorithmsTheory_CP5
             this.buckets = new Node[size];
         }
 
-        // Хеш-функція 1: Метод календарного згортання
         private int Hash1(int day, int month)
         {
             return ((month - 1) * 31 + (day - 1)) % size;
         }
 
-        // Хеш-функція 2: Метод множення на просте число (Поліноміальна)
         private int Hash2(int day, int month)
         {
             return (day * 37 + month) % size;
@@ -62,7 +60,7 @@ namespace AlgorithmsTheory_CP5
             {
                 buckets[index] = newNode;
             }
-            else // Вирішення колізій методом ланцюжків
+            else 
             {
                 Node current = buckets[index];
                 while (current.Next != null)

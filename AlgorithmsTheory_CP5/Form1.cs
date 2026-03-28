@@ -54,7 +54,6 @@ namespace AlgorithmsTheory_CP5
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            // 1. Отримуємо назву та перевіряємо, чи вона не порожня
             string name = txtName.Text.Trim();
             if (string.IsNullOrEmpty(name))
             {
@@ -62,11 +61,9 @@ namespace AlgorithmsTheory_CP5
                 return;
             }
 
-            // 2. Спробуємо зчитати день та місяць
             bool isDayOk = int.TryParse(txtDate.Text, out int day);
             bool isMonthOk = int.TryParse(txtMonth.Text, out int month);
 
-            // 3. Валідація значень
             if (!isDayOk || day < 1 || day > 31)
             {
                 MessageBox.Show("Введіть коректне число дня (1-31).");
@@ -79,13 +76,11 @@ namespace AlgorithmsTheory_CP5
                 return;
             }
 
-            // 4. Якщо все пройшло успішно — додаємо в таблицю
             try
             {
                 string msg = hashTable.Add(name, day, month);
                 MessageBox.Show(msg);
 
-                // Очищуємо поля для нового вводу
                 txtName.Clear();
                 txtDate.Clear();
                 txtMonth.Clear();
@@ -112,13 +107,12 @@ namespace AlgorithmsTheory_CP5
             try
             {
                 string name = txtRemoveName.Text.Trim();
-                int day = int.Parse(txtRemoveDate.Text.Trim());   // Ваше нове поле дня
-                int month = int.Parse(txtRemoveMonth.Text.Trim()); // Ваше нове поле місяця
+                int day = int.Parse(txtRemoveDate.Text.Trim());   
+                int month = int.Parse(txtRemoveMonth.Text.Trim()); 
 
                 string result = hashTable.Remove(name, day, month);
                 MessageBox.Show(result);
 
-                // Очищення полів після видалення
                 txtRemoveName.Clear();
                 txtRemoveDate.Clear();
                 txtRemoveMonth.Clear();
