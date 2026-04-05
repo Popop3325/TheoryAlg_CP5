@@ -54,12 +54,21 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnShow = new System.Windows.Forms.Button();
             this.listBoxTable = new System.Windows.Forms.ListBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtSearchMonth = new System.Windows.Forms.TextBox();
+            this.txtSearchDay = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.SelectHash.SuspendLayout();
             this.panel1.SuspendLayout();
             this.AddTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -68,6 +77,7 @@
             this.tabControl1.Controls.Add(this.AddTab);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabControl1.Location = new System.Drawing.Point(13, 13);
             this.tabControl1.Name = "tabControl1";
@@ -102,9 +112,9 @@
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(16, 42);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(316, 20);
+            this.radioButton2.Size = new System.Drawing.Size(73, 20);
             this.radioButton2.TabIndex = 1;
-            this.radioButton2.Text = "Поліноміальна комбінація (Polynomial Rolling)";
+            this.radioButton2.Text = "Зозуля";
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
@@ -113,9 +123,9 @@
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(16, 16);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(338, 20);
+            this.radioButton1.Size = new System.Drawing.Size(154, 20);
             this.radioButton1.TabIndex = 0;
-            this.radioButton1.Text = "Метод календарного згортання (Linear Mapping)";
+            this.radioButton1.Text = "Лінійне зондування";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
@@ -321,6 +331,83 @@
             this.listBoxTable.Size = new System.Drawing.Size(407, 228);
             this.listBoxTable.TabIndex = 0;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.listBox1);
+            this.tabPage3.Controls.Add(this.btnSearch);
+            this.tabPage3.Controls.Add(this.label9);
+            this.tabPage3.Controls.Add(this.label10);
+            this.tabPage3.Controls.Add(this.txtSearchMonth);
+            this.tabPage3.Controls.Add(this.txtSearchDay);
+            this.tabPage3.Controls.Add(this.label11);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(666, 390);
+            this.tabPage3.TabIndex = 4;
+            this.tabPage3.Text = "Знайти за датою";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(229, 159);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(39, 16);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "День";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(303, 160);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(50, 16);
+            this.label10.TabIndex = 16;
+            this.label10.Text = "Місяць";
+            // 
+            // txtSearchMonth
+            // 
+            this.txtSearchMonth.Location = new System.Drawing.Point(270, 157);
+            this.txtSearchMonth.Name = "txtSearchMonth";
+            this.txtSearchMonth.Size = new System.Drawing.Size(34, 22);
+            this.txtSearchMonth.TabIndex = 15;
+            // 
+            // txtSearchDay
+            // 
+            this.txtSearchDay.Location = new System.Drawing.Point(190, 156);
+            this.txtSearchDay.Name = "txtSearchDay";
+            this.txtSearchDay.Size = new System.Drawing.Size(36, 22);
+            this.txtSearchDay.TabIndex = 14;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(61, 161);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(122, 16);
+            this.label11.TabIndex = 13;
+            this.label11.Text = "День народження";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(170, 200);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 18;
+            this.btnSearch.Text = "Знайти";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Location = new System.Drawing.Point(411, 101);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(161, 180);
+            this.listBox1.TabIndex = 19;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -340,6 +427,8 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -372,6 +461,14 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtRemoveMonth;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtSearchMonth;
+        private System.Windows.Forms.TextBox txtSearchDay;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 
